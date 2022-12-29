@@ -1,0 +1,23 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BhoiDanny/New-Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BhoiDanny/New-Portfolio/issues"
+  },
+  "homepage": "https://github.com/BhoiDanny/New-Portfolio#readme",
+  "devDependencies": {
+    "gulp-mini-framework": "^1.0.7"
+  }
+}
