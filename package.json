@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/BhoiDanny/New-Portfolio#readme",
   "devDependencies": {
-    "gulp-mini-framework": "^1.0.7"
+    "gulp-mini-framework": "^1.0.7",
+    "gulp-strip-comments": "^2.5.2"
   }
 }

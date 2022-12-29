@@ -18,6 +18,7 @@ const gulp = require("gulp"),
   friendlyErrors = require("friendly-errors-webpack-plugin"),
   minifyInline = require("gulp-minify-inline"),
   uglifyCss = require("gulp-uglifycss"),
+  strip = require("gulp-strip-comments"),
   cleanCss = require("gulp-clean-css"),
   htmlClean = require("gulp-htmlclean");
 
@@ -92,6 +93,10 @@ gulp.task("views", (done) => {
         ignoreError: true,
       })
     )
+    .pipe(strip({
+        safe: true,
+        trim: true,
+    }))
     .pipe(gulp.dest(basePath.dev));
   gulp
     .src(paths.src.php, { allowEmpty: true })
@@ -101,6 +106,10 @@ gulp.task("views", (done) => {
         ignoreError: true,
       })
     )
+      .pipe(strip({
+          safe: true,
+          trim: true,
+      }))
     .pipe(gulp.dest(basePath.dev));
   done();
 });
