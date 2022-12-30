@@ -24,12 +24,19 @@ const gulp = require("gulp"),
 
 let webpackConfig = {
   plugins: [new friendlyErrors()],
+    module: {
+      rules: [
+        {
+            test: /\.(js|jsx)$/,
+        }
+    ]
+    }
 };
 
 /*Set Css and Js name*/
-let scssName = "myapp.scss";
-let cssName = "myapp.css";
-let jsName = "myapp.js";
+let scssName = "sannytech.scss";
+let cssName = "sannytech.css";
+let jsName = "sannytech.js";
 
 /*Constant Paths*/
 let basePath = {
@@ -55,8 +62,8 @@ let paths = {
     php: basePath.src + "*.php",
   },
   dev: {
-    html: basePath.dev + "*.html",
-    php: basePath.dev + "*.php",
+    html: basePath.dev + "**/*.html",
+    php: basePath.dev + "**/*.php",
   },
   js: {
     src: basePath.src + "js/",
@@ -67,11 +74,11 @@ let paths = {
     css: basePath.assets + "css/",
   },
   img: {
-    src: basePath.src + "img/",
-    dest: basePath.assets + "img/",
+    src: basePath.src + "assets/images/",
+    dest: basePath.assets + "images/",
   },
   fonts: {
-    src: basePath.src + "fonts/",
+    src: basePath.src + "assets/fonts/",
     dest: basePath.assets + "fonts/",
   },
 };
@@ -286,11 +293,15 @@ gulp.task(
     browserSync.init({
       server: {
         baseDir: basePath.dev,
+        notify: true,
+        logPrefix: "Cypherios",
+        livereload: true,
       },
     });
-    gulp.watch(basePath.src + "*/*", gulp.series("views-watch"));
+    //gulp.watch(basePath.src + "*.html", gulp.series("views-watch"));
+    //gulp.watch(basePath.src + "**/*.html", gulp.series("views-watch"));
     gulp.watch(
-      paths.js.src + "**/*",
+      paths.js.src + "**/*.js",
       gulp.series("script", function () {
         return gulp
           .src(basePath.assets + "js/" + jsName)
@@ -314,8 +325,8 @@ gulp.task(
       paths.img.src,
       gulp.series("image-min", function () {
         return gulp
-          .src(basePath.assets + "img/**/*", { allowEmpty: true })
-          .pipe(gulp.dest(basePath.dev + "/assets/img/"))
+          .src(basePath.assets + "images/**/*", { allowEmpty: true })
+          .pipe(gulp.dest(basePath.dev + "/assets/images/"))
           .pipe(browserSync.reload({ stream: true }));
         //done();
       })
@@ -331,7 +342,10 @@ gulp.task(
         done();
       })
     );
-
+      gulp.watch(basePath.src + "partials/**/*.html", gulp.series("views", function(){
+        return gulp.src(basePath.dev + "*.html")
+        .pipe(browserSync.reload({stream: true}));
+      }));
     /*Place File in Dev Folder on Src Change Detection*/
     gulp.watch(basePath.src + "*.html").on("change", function (file) {
       let fileName = file.split("\\").pop().split("/").pop();
@@ -343,6 +357,10 @@ gulp.task(
             ignoreError: true,
           })
         )
+        .pipe(strip({
+            safe: true,
+            trim: true,
+        }))
         .pipe(gulp.dest(basePath.dev))
         .pipe(browserSync.reload({ stream: true }));
     });
@@ -387,7 +405,7 @@ gulp.task(
       }
     );
 
-    gulp.watch(basePath.src + "*/*").on(
+    gulp.watch(basePath.src + "*.html").on(
       "change",
       gulp.series("views", function () {
         return browserSync.reload();
@@ -395,7 +413,7 @@ gulp.task(
     );
 
     gulp.watch(
-      paths.js.src + "**/*",
+      paths.js.src + "**/*.js",
       gulp.series("script", function () {
         gulp
           .src(basePath.assets + "js/" + jsName)
@@ -418,8 +436,8 @@ gulp.task(
       paths.img.src,
       gulp.series("image-min", function (done) {
         gulp
-          .src(basePath.assets + "img/**/*", { allowEmpty: true })
-          .pipe(gulp.dest(basePath.dev + "/assets/img/"))
+          .src(basePath.assets + "images/**/*", { allowEmpty: true })
+          .pipe(gulp.dest(basePath.dev + "/assets/images/"))
           .pipe(browserSync.reload({ stream: true }));
         done();
       })
