@@ -1,19 +1,18 @@
-<?php
+<?php /** @noinspection PhpMultipleClassDeclarationsInspection */
 
    use SannyTech\Dot;
    use SannyTech\Helper;
 
-   $root = dirname(__DIR__ . '/.');
+   $root = dirname(__DIR__ );
    $baseDir = dirname($root);
    $start = "";
-   require_once($baseDir . '/src/vendor/autoload.php');
+   require_once($baseDir . '/vendor/autoload.php');
 
    try {
       $dotenv = new Dot;
       $dotenv->create($baseDir);
       $dotenv->load();
-      $dotenv->require(['DB_READ_USER', 'DB_READ_PASS', 'DB_HOST', 'DB_CHARSET']);
-      $dotenv->require(['DB_NAME','MAIL_GMAIL_AUTH','MAIL_REFRESH_TOKEN_STAT'])->notEmpty();
+      $dotenv->require(['APP_NAME', 'MAIL_HOST', 'MAIL_PORT', 'MAIL_USERNAME','MAIL_CLIENT_ID'])->notEmpty();
       $dotenv->run();
       $start = "God is a Programmer";
 
@@ -22,7 +21,7 @@
          ini_set('display_errors', 0);
          set_exception_handler(function($e) {
             #show error page
-            Helper::productionErrorPage('manager/errors/production.php');
+            Helper::productionErrorPage('../errors/error-500.php');
             Helper::productionErrorLog($e,"logs/error.log", 3);
          });
       } else {

@@ -184,6 +184,22 @@ gulp.task("copy-vendor", (done) => {
   //done();
 });
 
+/*Copy Env if any*/
+gulp.task("copy-env", (done) => {
+    return gulp
+        .src(basePath.src + ".env", { allowEmpty: true })
+        .pipe(gulp.dest(basePath.dev + "/"));
+    //done();
+});
+
+/*Copy Manager if any*/
+gulp.task("copy-manager", (done) => {
+    return gulp
+        .src(basePath.src + "manager/**/*", { allowEmpty: true })
+        .pipe(gulp.dest(basePath.dev + "manager/"));
+    //done();
+});
+
 /*Copy Assets*/
 gulp.task("copy-assets", (done) => {
   return gulp
@@ -194,7 +210,7 @@ gulp.task("copy-assets", (done) => {
 
 /*Clean Dev*/
 gulp.task("clean-dev", (done) => {
-  del.sync(basePath.dev + "*/");
+  del.sync(basePath.dev + "**/*");
   done();
 });
 
@@ -207,7 +223,9 @@ gulp.task(
     "script",
     "image-min",
     "copy-fonts",
-    "copy-vendor"
+    "copy-vendor",
+    "copy-manager",
+    "copy-env"
   )
 );
 
@@ -239,6 +257,28 @@ gulp.task(
       .pipe(gulp.dest(basePath.dist + "vendor/"));
     //done();
   })
+);
+
+/*Copy Env if any*/
+gulp.task(
+    "dist:copy-env",
+    gulp.series("copy-env", (done) => {
+        return gulp
+            .src(basePath.dev + ".env", { allowEmpty: true })
+            .pipe(gulp.dest(basePath.dist + "/"));
+        //done();
+    })
+);
+
+/*Dist Copy manager*/
+gulp.task(
+    "dist:copy-manager",
+    gulp.series("copy-manager", (done) => {
+        return gulp
+            .src(basePath.dev + "manager/**/*", { allowEmpty: true })
+            .pipe(gulp.dest(basePath.dist + "manager/"));
+        //done();
+    })
 );
 
 /*Dist Copy assets*/
@@ -279,8 +319,10 @@ gulp.task(
     "default",
     "dist:views",
     "dist:copy-vendor",
+    "dist:copy-manager",
     "dist:copy-assets",
-    "dist:script"
+    "dist:script",
+    "dist:copy-env"
   )
 );
 

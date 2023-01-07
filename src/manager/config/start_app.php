@@ -1,18 +1,12 @@
-<?php
+<?php /** @noinspection PhpMultipleClassDeclarationsInspection */
+
    /*Object Instantiation*/
-   use SannyTech\Session;
-   use SannyTech\Cookie;
-   use SannyTech\DB;
    use SannyTech\Helper;
+   use SannyTech\Mailer;
 
    ob_start();
 
-   //$db = new DB(true);
-   $session = new Session();
-   $message = $session->message();
-
-   $cookie = new Cookie();
-
    $help = new Helper();
+   $mail = new Mailer();
 
    $help::setTimezone("Africa/Accra");
