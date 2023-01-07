@@ -21,8 +21,8 @@
          ini_set('display_errors', 0);
          set_exception_handler(function($e) {
             #show error page
-            Helper::productionErrorPage('../errors/error-500.php');
-            Helper::productionErrorLog($e,"logs/error.log", 3);
+            Helper::productionErrorPage('./manager/errors/error-500.php');
+            Helper::productionErrorLog($e,"./manager/logs/error.log", 3);
          });
       } else {
          error_reporting(E_ALL);
