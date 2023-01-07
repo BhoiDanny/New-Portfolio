@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Hostel - Management</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="#">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="./css/plugins.min.css" rel="stylesheet">
+    <link href="./manager/errors/manager/errors/css/plugins.min.css" rel="stylesheet">
 
-    <link href="./css/main.min.css?v=1" rel="stylesheet">
-    <script src="./js/modernizr-3.6.0.min.js"></script>
+    <link href="./manager/errors/css/main.min.css?v=1" rel="stylesheet">
+    <script src="./manager/errors/js/modernizr-3.6.0.min.js"></script>
 </head>
 
 <body class="v-light vertical-nav fix-header fix-sidebar">
@@ -30,7 +30,7 @@
                 <div class="card m-b-0">
                     <div class="card-body text-center">
                         <div class="error-img m-b-50">
-                            <img src="./images/500.png" alt="" class="img-fluid">
+                            <img src="./manager/errors/images/500.png" alt="" class="img-fluid">
                         </div>
                         <h1 class="error-text text-primary">500</h1>
                         <h4 class="m-t-15">
@@ -38,19 +38,7 @@
                             Server Error
                         </h4>
                         <p>Contact Developer</p>
-                        <form class="m-t-30 m-b-30">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="ti-search"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center m-b-15 m-t-15">
-                                <a href="." class="btn btn-primary">Go to Homepage</a>
-                            </div>
-                        </form>
+
                         <hr class="m-t-30 m-b-30">
                         <div class="text-center">
                             <p>
@@ -76,7 +64,7 @@
         </div>
     </div>
 </div>
-<script src="js/index.js"></script>
+<script src="./manager/errors/js/index.js"></script>
 
 </body>
 </html>
