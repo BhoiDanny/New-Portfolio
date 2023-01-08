@@ -7,6 +7,6 @@
    ob_start();
 
    $help = new Helper();
-   $mail = new Mailer();
+   $mail = new Mailer(true);
 
    $help::setTimezone("Africa/Accra");

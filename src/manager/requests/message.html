@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        .banner {
+            width: 100%;
+            height: 100px;
+            background-color: #3498db;
+            background-image: url('https://picsum.photos/seed/2/1920/1080/');
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #666;
+        }
+        .footer {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+</div>
+<div class="container">
+    <h1>Dear {{name}},</h1>
+    <p>Thank you for your email and your interest in my portfolio. I am glad to hear that you enjoyed viewing my work
+        and that you think my skills and experience align with your needs.</p>
+    <p>I would be happy to discuss further how I can contribute to your team or work and how my skills can help your
+        company or organization achieve its goals. Please let me know if you have any specific questions or if there is
+        any additional information you would like me to provide.</p>
+    <p>
+        Contact me at <a href="mailto:{{my_email}}">{{my_email}}</a> or by phone at <a href="tel:{{phone}}">{{phone}}</a>.
+    </p>
+    <p>Thank you again for reaching out to me. I look forward to discussing this opportunity further.</p>
+
+    <p>Sincerely,<br>{{user}}</p>
+    <div class="footer">Copyright &copy; {{date}} {{app_name}}</div>
+</div>
+</body>
+</html>

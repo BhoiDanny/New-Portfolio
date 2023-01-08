@@ -2,19 +2,12 @@
    /** //@noinspection PhpMultipleClassDeclarationsInspection */
    namespace SannyTech;
 
-   use SannyTech\Helper as help;
-
-   use PHPMailer\PHPMailer\PHPMailer;
-
-   use PHPMailer\PHPMailer\SMTP;
-
-   use PHPMailer\PHPMailer\OAuth;
-
-   use PHPMailer\PHPMailer\Exception;
-
-   use League\OAuth2\Client\Provider\Google;
-
    use League\OAuth2\Client\Grant\RefreshToken;
+   use League\OAuth2\Client\Provider\Google;
+   use PHPMailer\PHPMailer\Exception;
+   use PHPMailer\PHPMailer\OAuth;
+   use PHPMailer\PHPMailer\PHPMailer;
+   use PHPMailer\PHPMailer\SMTP;
 
 
    class Mailer extends PHPMailer
@@ -36,6 +29,7 @@
       private $auth = MAIL_AUTH;
       public $email = MAIL_EMAIL;
       private $username = MAIL_USERNAME;
+      private $password = MAIL_PASSWORD;
       private $clientId = MAIL_CLIENT_ID;
       private $clientSecret = MAIL_CLIENT_SECRET;
       private $refreshToken = MAIL_REFRESH_TOKEN;
@@ -56,6 +50,8 @@
             $this->mail->Port = $this->port;
             $this->mail->SMTPSecure = $this->mail::ENCRYPTION_SMTPS;
             $this->mail->SMTPAuth = true;
+            $this->mail->Username = $this->username;
+            $this->mail->Password = $this->password;
 
             if(\SannyTech\Helper::env('MAIL_GMAIL_AUTH')){
                //#
@@ -108,9 +104,23 @@
          return $this->mail;
       }
 
-      public function from($name=""){
+      /**
+       * @param string $name
+       * @return void
+       */
+      public function from(string $name=""): void
+      {
          try {
             $this->mail->setFrom($this->email,$name);
+         } catch(\Exception $e) {
+            $this->error = $e->getMessage() . " Mailer.php" . $e->getCode();
+         }
+      }
+
+      public function addFrom(string $email, string $name=""): void
+      {
+         try {
+            $this->mail->setFrom($email,$name);
          } catch(\Exception $e) {
             $this->error = $e->getMessage() . " Mailer.php" . $e->getCode();
          }
@@ -167,6 +177,15 @@
          }
       }
 
+      #close the connection
+      public function close() {
+         try {
+            parent::smtpClose();
+         } catch (\Exception $e) {
+            $this->error = $e->getMessage() . " Mailer.php" . $e->getCode();
+         }
+      }
+
       public function CharsetUTF8() {
          try {
             $this->mail->CharSet = $this->mail::CHARSET_UTF8;
@@ -197,14 +216,48 @@
          $this->Body($message);
       }
 
-      public function __destruct() {
-         $this->mail->clearAddresses();
+      public function clearAddress()
+      {
+         try {
+            $this->mail->clearAddresses();
+         } catch (\Exception $e) {
+            $this->error = $e->getMessage() . " Mailer.php" . $e->getCode();
+         }
+      }
+
+      public function clearAttachments()
+      {
          $this->mail->clearAttachments();
-         $this->mail->clearAllRecipients();
+      }
+
+      public function clearReplyTo()
+      {
+         try {
+            parent::clearReplyTos();
+         } catch (\Exception $e) {
+            $this->error = $e->getMessage() . " Mailer.php" . $e->getCode();
+         }
+      }
+
+      public function clearRecipients()
+      {
+         try {
+            parent::clearAllRecipients();
+         } catch (\Exception $e) {
+            $this->error = $e->getMessage() . " Mailer.php" . $e->getCode();
+         }
+      }
+
+      public function __destruct() {
+         parent::clearAddresses();
+         parent::clearAttachments();
+         parent::clearAllRecipients();
+         parent::clearReplyTos();
+         parent::smtpClose();
       }
 
       public function __toString() {
-         return $this->error;
+         return $this->error . " " . $this->mail->ErrorInfo;
       }
 
 

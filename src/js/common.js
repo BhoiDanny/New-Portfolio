@@ -494,22 +494,62 @@ function initCursor() {
 		},
 		success: 'valid',
 		submitHandler: function() {
+			let name 	= $('#cform').find('input[name="name"]').val(),
+				email 	= $('#cform').find('input[name="email"]').val(),
+				subject = $('#cform').find('input[name="subject"]').val(),
+				message = $('#cform').find('textarea[name="message"]').val();
 			$.ajax({
 				url: 'manager/requests/contacts.php',
 				type: 'post',
-				data: 'name='+ $("#cform").find('input[name="name"]').val() + '&email='+ $("#cform").find('input[name="email"]').val() + '&subject='+ $("#cform").find('input[name="subject"]').val() + '&message=' + $("#cform").find('textarea[name="message"]').val(),
+				data: {
+					name: name, email: email, subject: subject, message: message, user_first: true,
+				},
 				beforeSend: function() {
-
+		    		$('#cform').find('.btn span').text('Sending...');
+					$('#cform').find('.btn').attr('disabled', true);
 				},
 				complete: function() {
-
+					$('#cform').find('.btn span').text('Send Message');
+					$('#cform').find('.btn').attr('disabled', false);
 				},
 				success: function(res) {
 					let data = JSON.parse(res);
-					$('#cform').fadeOut();
-					$('.alert-success').css({
-						'text-align': 'center',
-					}).delay(1000).text(data.message).fadeIn();
+					if(data.status === 'success') {
+						$.ajax({
+							url: 'manager/requests/feedback.php',
+							type: 'post',
+							data: {
+								name: name, email: email, subject: subject, message: message, user_send: true,
+							},
+							success: function(res){
+								let data = JSON.parse(res);
+								if(data.status === 'success') {
+									$('#cform').addClass('sannytech');
+									$('#cform').trigger('reset');
+									$('.alert-success').css({
+										'text-align': 'center',
+										'margin-top': '20px',
+										'font-size': '16px',
+									}).delay(1000).text(data.message).fadeIn().delay(5000).fadeOut();
+								} else{
+									$('.alert-success').css({
+										'text-align': 'center',
+										'margin-top': '20px',
+										'font-size': '16px',
+									}).delay(1000).text(data.message).fadeIn().delay(5000).fadeOut();
+								}
+							}
+						})
+					} else {
+						$('.alert-success').css({
+							'text-align': 'center',
+							'margin-top': '20px',
+							'font-size': '16px',
+							'background-color': '#f8d7da',
+						}).delay(1000).text(data.message).fadeIn().delay(5000).fadeOut();
+					}
+
+
 				}
 			});
 		}

@@ -1,5 +1,8 @@
 <?php /** @noinspection PhpMultipleClassDeclarationsInspection */
 
+   ini_set('expose_php','off');
+   header("X-Powered-By: ASP.NET");
+
    use SannyTech\Dot;
    use SannyTech\Helper;
 
