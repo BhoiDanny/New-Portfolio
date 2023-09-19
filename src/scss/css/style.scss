@@ -185,7 +185,7 @@ h4 {
 }
 
 h5,
-.lui-title {
+.sannytech-title {
 	font-size: 24px;
 }
 
@@ -1014,7 +1014,7 @@ hr {
 	max-width: 1300px;
 }
 
-.lui-section {
+.sannytech-section {
 	padding-bottom: 220px;
 }
 
@@ -2153,16 +2153,16 @@ hr {
 * Footer
 **/
 
-.lui-contacts .container {
+.sannytech-contacts .container {
 	max-width: 1180px;
 }
 
-.lui-section-map {
+.sannytech-section-map {
 	padding-bottom: 0;
 	line-height: 0;
 }
 
-.lui-section-map iframe {
+.sannytech-section-map iframe {
 	width: 100%;
 	height: 580px;
 }
@@ -2229,17 +2229,17 @@ hr {
 	z-index: 2;
 }
 
-.lui-gradient-top {
+.sannytech-gradient-top {
 	background-color: transparent;
 	background-image: linear-gradient(0deg, $secondary-custom-white 0%, $secondary-custom-color 100%);
 }
 
-.lui-gradient-bottom {
+.sannytech-gradient-bottom {
 	background-color: transparent;
 	background-image: linear-gradient(180deg, $secondary-custom-white 0%, $secondary-custom-color 100%);
 }
 
-.lui-gradient-center {
+.sannytech-gradient-center {
 	background-color: transparent;
 	background-image: linear-gradient(180deg, $secondary-custom-color 0%, $secondary-custom-color 100%);
 }
@@ -2351,7 +2351,7 @@ hr {
 	color: $primary-custom-color;
 }
 
-.lui-subtitle {
+.sannytech-subtitle {
 	font-size: 13px;
 	font-weight: 700;
 	color: #000;
@@ -2359,25 +2359,25 @@ hr {
 	letter-spacing: 0.05em;
 }
 
-.lui-subtitle strong,
-.lui-subtitle b {
+.sannytech-subtitle strong,
+.sannytech-subtitle b {
 	color: $primary-custom-color;
 }
 
-.lui-text {
+.sannytech-text {
 	opacity: 0.8;
 }
 
-.lui-text p {
+.sannytech-text p {
 	margin: 0;
 }
 
-.lui-bgtitle {
+.sannytech-bgtitle {
 	position: relative;
 	top: -50px;
 	left: -50%;
 	width: 200%;
-	font-size: $lui-big-title-font;
+	font-size: $sannytech-big-title-font;
 	font-family: $secondary-font;
 	color: rgba(0, 0, 0, 0.02);
 	font-weight: bold;
@@ -2406,27 +2406,27 @@ hr {
 * Section Hero Started
 **/
 
-.lui-section-hero {
+.sannytech-section-hero {
 	padding-bottom: 180px;
 }
 @media screen and (min-width: 1279px) {
-	.lui-section-hero {
+	.sannytech-section-hero {
 		padding-top: 60px;
 	}
 }
 
-.lui-section-hero .container {
+.sannytech-section-hero .container {
 	max-width: 1300px;
 	min-height: 100vh;
 	display: flex;
 	align-items: center;
 }
 
-.lui-section-hero .container .lui-started {
+.sannytech-section-hero .container .sannytech-started {
 	width: 100%;
 }
 
-.lui-section-hero .container .lui-started .lui-bgtitle {
+.sannytech-section-hero .container .sannytech-started .sannytech-bgtitle {
 	top: 50px;
 }
 
@@ -2539,7 +2539,7 @@ hr {
 	text-shadow: 2px 2px #000, -2px 2px #000, 2px -2px #000, -2px -2px #000, 5px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
-.section.hero-started .lui-subtitle {
+.section.hero-started .sannytech-subtitle {
 	font-size: 15px;
 }
 
@@ -2936,7 +2936,7 @@ hr {
 	color: $primary-custom-color;
 }
 
-.services-item .lui-text {
+.services-item .sannytech-text {
 	min-height: 175px;
 }
 
@@ -3372,12 +3372,12 @@ hr {
 	font-style: normal;
 }
 
-.pricing-item .lui-text {
+.pricing-item .sannytech-text {
 	padding-bottom: 30px;
 	min-height: 145px;
 }
 
-.pricing-item .lui-text p {
+.pricing-item .sannytech-text p {
 	margin: 0;
 }
 
@@ -3495,7 +3495,7 @@ hr {
 	border-radius: 0 0 18px 0;
 }
 
-.testimonials-item .lui-text {
+.testimonials-item .sannytech-text {
 	min-height: 110px;
 }
 
@@ -3539,7 +3539,7 @@ hr {
 	font-weight: 500;
 }
 
-.archive-item .desc .lui-text p {
+.archive-item .desc .sannytech-text p {
 	margin: 0;
 }
 
@@ -3552,7 +3552,7 @@ hr {
 	text-decoration: none;
 }
 
-.archive-item .desc .lui-text .readmore {
+.archive-item .desc .sannytech-text .readmore {
 	margin-top: 10px;
 }
 
@@ -3624,7 +3624,7 @@ hr {
 	order: 2;
 }
 
-.articles-container .archive-item .desc .lui-title {
+.articles-container .archive-item .desc .sannytech-title {
 	font-size: 30px;
 }
 
@@ -5298,10 +5298,10 @@ a.wp-block-button__link {
 }
 
 @media screen and (max-width: 767px) {
-	.lui-section {
+	.sannytech-section {
 		padding-bottom: 120px;
 	}
-	.lui-section-hero {
+	.sannytech-section-hero {
 		padding-bottom: 120px;
 	}
 	.container {
@@ -5400,7 +5400,7 @@ a.wp-block-button__link {
 	.section.hero-started .title {
 		font-size: 40px;
 	}
-	.section.hero-started .lui-subtitle {
+	.section.hero-started .sannytech-subtitle {
 		font-size: 13px;
 	}
 	.section.hero-started .label strong, .section.hero-started .label b {
